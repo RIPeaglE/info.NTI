@@ -1,0 +1,52 @@
+{
+    "NTI Södertörn": {
+        "id": 0,
+        "name": "NTI Södertörn",
+        "Referer": "https://web.skola24.se/timetable/timetable-viewer/it-gymnasiet.skola24.se/IT-Gymnasiet%20S%C3%B6dert%C3%B6rn/",
+        "host": "it-gymnasiet.skola24.se",
+        "unitGuid": "ZTEyNTdlZjItZDc3OC1mZWJkLThiYmEtOGYyZDA4NGU1YjI2",
+        "overwriteOtherData": {
+            "data": {
+                "classes": [
+                    {
+                        "groupName": "20el1"
+                    },
+                    {
+                        "groupName": "20el2"
+                    },
+                    {
+                        "groupName": "20teks"
+                    },
+                    {
+                        "groupName": "20teke"
+                    },
+                    {
+                        "groupName": "20de"
+                    },
+                    {
+                        "groupName": "21el"
+                    },
+                    {
+                        "groupName": "21tek"
+                    },
+                    {
+                        "groupName": "21de"
+                    },
+                    {
+                        "groupName": "22tek"
+                    },
+                    {
+                        "groupName": "22el"
+                    },
+                    {
+                        "groupName": "22de"
+                    },
+                    {
+                        "groupName": "22yrkel"
+                    }
+        
+                ]
+            }
+        }
+    }
+}
