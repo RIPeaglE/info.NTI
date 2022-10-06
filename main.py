@@ -4,7 +4,7 @@ import datetime
 
 from datetime import datetime
 
-klasser = ["20el1", "20el2", "20teks", "20teke", "20de", "21el", "21teks", "21teke", "21de", "22tek", "22el", "22de", "22yrkel"]
+klasser = ['20el1','20el2','20teks','20teks','20teke','20de','21el','21tek','21de','22tek','22el','22de','22yrkel']
 
 # get current datetime
 dt = datetime.now()
@@ -62,8 +62,3 @@ for klass in klasser:
         print("No class found with such name")
 
 
-params = {
-    'school': '0',
-    'id': '20EL1',
-    'day': x,
-}
