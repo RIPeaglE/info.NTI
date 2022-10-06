@@ -27,7 +27,7 @@ for i in data['overwriteOtherData']['data']['classes']:
 f.close()
 
 
-# Get the data from the Gettime's database 'https://gettime.ga/API/JSON
+# Gets the data from the Gettime's database 'https://gettime.ga/API/JSON'
 params = {
     'school': '0',
     'id': '20EL2',
@@ -55,10 +55,3 @@ try:
         print(x+'\n')
 except TypeError:
     print("No class found with such name")
-
-
-params = {
-    'school': '0',
-    'id': '20EL1',
-    'day': x,
-}
