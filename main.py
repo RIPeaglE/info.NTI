@@ -36,7 +36,7 @@ for klass in klasser:
     'day': x,
     }
 
-# Gets the data from the Gettime's database 'https://gettime.ga/API/JSON'
+    # Gets the data from the Gettime's database 'https://gettime.ga/API/JSON'
 
 
     response = requests.get('https://gettime.ga/API/JSON', params=params)
