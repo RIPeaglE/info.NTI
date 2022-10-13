@@ -46,6 +46,7 @@ for klass in klasser:
 
     try:
         for x in data['data']['data']['lessonInfo']:
+            
             temp = f"{x['timeStart']} -- {x['texts'][0]}, börjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
             try:
                 temp += f" i sal {x['texts'][2]}"
@@ -55,10 +56,10 @@ for klass in klasser:
         a.sort()
 
         a = [i.split(' -- ')[1] for i in a]
-
+        print("--------------------")
+        print(klass)
         for x in a:
-            print(x+'\n')
+            print(x)
+        print("--------------------")
     except TypeError:
         print("No class found with such name")
-
-
