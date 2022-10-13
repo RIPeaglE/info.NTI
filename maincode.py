@@ -56,10 +56,10 @@ for klass in klasser:
         a.sort()
 
         a = [i.split(' -- ')[1] for i in a]
-        print("--------------------")
+        print("-------------------------------------------------------------------------------------------")
         print(klass)
         for x in a:
-            print(x)
-        print("--------------------")
+            print('\n' + x)
+        print("-------------------------------------------------------------------------------------------")
     except TypeError:
         print("No class found with such name")
