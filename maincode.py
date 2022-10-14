@@ -10,8 +10,7 @@ klasser = []
 dt = datetime.now()
 
 # get day of week as an integer
-x = dt.weekday()
-x = x + 1
+day = dt.weekday() + 1
 
 #Json code from https://www.geeksforgeeks.org/json-load-in-python/
 f = open('klasser.json', "r")
@@ -33,7 +32,7 @@ for klass in klasser:
     params = {
     'school': '0',
     'id': klass,
-    'day': x,
+    'day': day,
     }
 
     # Gets the data from the Gettime's database 'https://gettime.ga/API/JSON'
