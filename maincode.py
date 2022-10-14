@@ -62,3 +62,21 @@ for klass in klasser:
         print("-------------------------------------------------------------------------------------------")
     except TypeError:
         print("No class found with such name")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Learn flask for web app
