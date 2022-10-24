@@ -27,56 +27,50 @@ for i in data['overwriteOtherData']['data']['classes']:
 # Closing file
 f.close()
 
+#I put the code insde a function so I can use it later for the flask
+def time():
+    for klass in klasser:
+        params = {
+        'school': '0',
+        'id': klass,
+        'day': day,
+        }
 
-for klass in klasser:
-    params = {
-    'school': '0',
-    'id': klass,
-    'day': day,
-    }
-
-    # Gets the data from the Gettime's database 'https://gettime.ga/API/JSON'
-
-
-    response = requests.get('https://gettime.ga/API/JSON', params=params)
-    data = json.loads(response.text)
-
-    a = []
-
-    try:
-        for x in data['data']['data']['lessonInfo']:
-            
-            temp = f"{x['timeStart']} -- {x['texts'][0]}, börjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
-            try:
-                temp += f" i sal {x['texts'][2]}"
-            except:
-                pass
-            a.append(temp)
-        a.sort()
-
-        a = [i.split(' -- ')[1] for i in a]
-        print("-------------------------------------------------------------------------------------------")
-        print(klass)
-        for x in a:
-            print('\n' + x)
-        print("-------------------------------------------------------------------------------------------")
-    except TypeError:
-        print("No class found with such name")
+        # Gets the data from the Gettime's database 'https://gettime.ga/API/JSON'
 
 
+        response = requests.get('https://gettime.ga/API/JSON', params=params)
+        data = json.loads(response.text)
+
+        a = []
+
+        try:
+            for x in data['data']['data']['lessonInfo']:
+                
+                temp = f"{x['timeStart']} -- {x['texts'][0]}, börjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
+                try:
+                    temp += f" i sal {x['texts'][2]}"
+                except:
+                    pass
+                a.append(temp)
+            a.sort()
+
+            a = [i.split(' -- ')[1] for i in a]
+            print("-------------------------------------------------------------------------------------------")
+            print(klass)
+            for x in a:
+                print('\n' + x)
+            print("-------------------------------------------------------------------------------------------")
+        except TypeError:
+            print("No class found with such name")
+time()
 
 
+from flask import Flask, render_template 
+
+app = Flask(__name__)
 
 
-
-
-
-
-
-
-
-
-
-
-
-#Learn flask for web app
+@app.route('/')
+def time():
+    return time 
