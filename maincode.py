@@ -27,7 +27,7 @@ for i in data['overwriteOtherData']['data']['classes']:
 # Closing file
 f.close()
 
-#I put the code insde a function so I can use it later for the flask
+#I put the code insde a function so I can use it later for with flask
 def time():
     for klass in klasser:
         params = {
@@ -64,13 +64,3 @@ def time():
         except TypeError:
             print("No class found with such name")
 time()
-
-
-# from flask import Flask, render_template 
-
-# app = Flask(__name__)
-
-
-# @app.route('/')
-# def time():
-#     return time 
