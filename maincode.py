@@ -72,7 +72,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return time()
+    return render_template('frontend.html'), time()
 
 if __name__ == '__main__':
     app.run(debug=True)
