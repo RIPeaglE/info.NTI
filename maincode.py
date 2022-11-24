@@ -1,6 +1,8 @@
 import requests
 import json
 import datetime
+from flask import Flask
+from flask import render_template
 
 from datetime import datetime
 
@@ -63,16 +65,14 @@ def time():
             print("-------------------------------------------------------------------------------------------")
         except TypeError:
             print("No class found with such name")
+            pass
 time()
-
-from flask import Flask
-from flask import render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('frontend.html')
+    return render_template('frontend.html', time=time()) 
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
