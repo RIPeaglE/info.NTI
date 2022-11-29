@@ -44,6 +44,7 @@ def time():
         response = requests.get('https://gettime.ga/API/JSON', params=params)
         data = json.loads(response.text)
 
+
         a = []
 
         try:
@@ -66,13 +67,12 @@ def time():
         except TypeError:
             print("No class found with such name")
             pass
-Lektiontider = time()
 
 app = Flask(__name__)
-
+ 
 @app.route('/')
 def home():
-    return render_template('front.html', tider = Lektiontider) 
+    return data 
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
