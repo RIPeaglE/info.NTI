@@ -28,7 +28,7 @@ for i in data['overwriteOtherData']['data']['classes']:
    
 # Closing file
 f.close()
-
+things = []
 #I put the code insde a function so I can use it later for with flask
 def time():
     for klass in klasser:
@@ -45,7 +45,6 @@ def time():
         data = json.loads(response.text)
         
         a = []
-
         try:
             for x in data['data']['data']['lessonInfo']:
                 
@@ -58,6 +57,8 @@ def time():
             a.sort()
 
             a = [i.split(' -- ')[1] for i in a]
+            things.append(a)
+
             
             print(klass)
             for x in a:
@@ -65,17 +66,16 @@ def time():
             print("--------------")
         except TypeError:
             print("No class found with such name")
-        continue 
- 
+    return things
+
+         
 Lektiontider = time()
 
-"""
 app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html') 
+        return render_template('front.html', Lektiontider=Lektiontider)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
-"""
