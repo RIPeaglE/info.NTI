@@ -12,7 +12,10 @@
 
     {% for x in Lektiontider %}
         <div class="lektion">
-            <p> {{x}} </p>
+            <h1>{{x[-1]}}</h1>
+            {% for klasses in x %}
+                <p> {{klasses}}</p>
+            {% endfor %}
         </div>
     {% endfor %}
 </body>

@@ -57,6 +57,7 @@ def time():
             a.sort()
 
             a = [i.split(' -- ')[1] for i in a]
+            a.append(klass)
             things.append(a)
 
             
