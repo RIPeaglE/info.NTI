@@ -10,6 +10,7 @@ from datetime import datetime
 klasser = []
 # get current datetime
 dt = datetime.now()
+now = datetime.now()
 
 # get day of week as an integer
 day = dt.weekday() + 1
@@ -51,6 +52,7 @@ def time():
                     temp += f" i sal {x['texts'][2]}"
                 except:
                     pass
+                a.append(now.time())
                 a.append(temp)
             a.sort()
 
@@ -78,4 +80,3 @@ def home():
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
-    
