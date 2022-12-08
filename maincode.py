@@ -44,20 +44,25 @@ def time():
         data = json.loads(response.text)
         
         a = []
+        denna_timme = int(dt.now().strftime("%H"))
         try:
             for x in data['data']['data']['lessonInfo']:
                 
-                temp = f"{x['timeStart']} -- {x['texts'][0]}, börjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
+                temp = f"{x['timeStart']} -- {x['texts'][0]}\nBörjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
                 try:
                     temp += f" i sal {x['texts'][2]}"
                 except:
                     pass
-                a.append(now.time())
-                a.append(temp)
+                #Gets the lesson times for the current hour
+                if denna_timme >= int(x['timeStart'].split(':')[0]) and denna_timme <= int(x['timeEnd'].split(':')[0]):
+                    temp = "Pågående lektion: " + temp
+                    a.append(temp)
             a.sort()
 
             a = [i.split(' -- ')[1] for i in a]
             a.append(klass)
+            
+
             things.append(a)
 
             

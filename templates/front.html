@@ -10,12 +10,14 @@
 <body>
     <img src="../static/img/NTIsymbolvit.png" style="display: block; margin-left: auto; margin-right: auto;"/>
 
+    <h1>Lektioner</h1>
     {% for x in Lektiontider %}
         <div class="lektion">
-            <h1>{{x[-1]}}</h1>
-            {% for klasses in x %}
+            <h2>{{x[-1]}}</h2>
+            <p>{{x[0]}}</p>
+            <!--{% for klasses in x %}
                 <p> {{klasses}}</p>
-            {% endfor %}
+            {% endfor %} -->
         </div>
     {% endfor %}
 </body>
