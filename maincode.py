@@ -46,9 +46,8 @@ def time():
         a = []
         denna_timme = int(dt.now().strftime("%H"))
         try:
-            for x in data['data']['data']['lessonInfo']:
-                
-                temp = f"{x['timeStart']} -- {x['texts'][0]}\nBörjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
+            for x in data['data']['data']['lessonInfo']: 
+                temp = f"{x['timeStart']} -- {x['texts'][0]} \nBörjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
                 try:
                     temp += f" i sal {x['texts'][2]}"
                 except:
