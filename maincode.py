@@ -21,7 +21,7 @@ f = open('klasser.json', "r")
 # returns JSON object as 
 # a dictionary
 data = json.load(f)
-   
+
 # Iterating through the json
 # list
 for i in data['overwriteOtherData']['data']['classes']:
@@ -47,7 +47,7 @@ def time():
         denna_timme = int(dt.now().strftime("%H"))
         try:
             for x in data['data']['data']['lessonInfo']: 
-                temp = f"{x['timeStart']} -- {x['texts'][0]} \nBörjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
+                temp = f"{x['timeStart']} -- {x['texts'][0]}: Börjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
                 try:
                     temp += f" i sal {x['texts'][2]}"
                 except:
