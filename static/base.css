@@ -23,3 +23,10 @@ h2 {
     color:white;
     text-align: middle;
 }
+
+div {
+    border: 2px solid rgb(115, 43, 184);
+    border-radius: 12px;
+    padding: 5px;
+    width: 650px;
+}
