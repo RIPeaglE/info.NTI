@@ -10,7 +10,8 @@
     <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
 
     
-    <h1>Lektioner</h1>
+
+    <h1>Lektioner&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dagens Lunch</h1>
     {% for x in Lektiontider %}
         <div class="lektion">
             <h2>{{x[-1]}}</h2>
@@ -21,9 +22,9 @@
         </div>
     {% endfor %}
 
-    <h1> {{ skolmaten }} </h1>
-    
-
+    <div id="box1">
+        <p>{{ skolmaten }} </p>
+    </div>
 </body>
 </html>
 
