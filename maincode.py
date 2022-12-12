@@ -3,6 +3,8 @@ import json
 import datetime
 from flask import Flask
 from flask import render_template
+import feedparser
+
 
 from datetime import datetime
 
@@ -76,11 +78,24 @@ def time():
          
 Lektiontider = time()
 
+#Skolmaten
+#https://skolmaten.se/nti-gymnasiet-sodertorn/
+#https://skolmaten.se/about/rss/nti-gymnasiet-sodertorn/
+NewsFeed = feedparser.parse("https://skolmaten.se/nti-gymnasiet-sodertorn/rss/weeks/")
+
+print('Number of RSS posts :', len(NewsFeed.entries))
+
+entry = NewsFeed.entries[0]
+print('Post Title :',entry.title)
+print('Post Summary :',entry.summary)
+
+skolmaten = entry.summary
+
 app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html', Lektiontider=Lektiontider)
+        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
