@@ -23,3 +23,9 @@ def weather(city):
 city = 'Huddinge'
 city = city+" weather"
 weather(city)
+
+
+ddm = datetime.datetime.now()
+print(ddm.strftime("%A, %d %B"))
+
+date = ddm.strftime("%A, %d %B")

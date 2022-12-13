@@ -13,6 +13,7 @@ from datetime import datetime
 #klasser = ['20el1','20el2','20teks','20teks','20teke','20de','21el','21tek','21de','22tek','22el','22de','22yrkel']
 klasser = []
 # get current datetime
+
 dt = datetime.now()
 now = datetime.now()
 
@@ -117,6 +118,11 @@ weather = weather()
 week_number_new = dt.isocalendar().week
 print ("Vecka: " + str(week_number_new))
 week = week_number_new
+
+#Gets current date in format: Monday, 1 January. But its not working because i already use datetime. Have to find a way to fix it.
+#ddm = datetime.datetime.now()
+#print(ddm.strftime("%A, %d %B"))
+#date = ddm.strftime("%A, %d %B")
 
 #Flask
 app = Flask(__name__)
