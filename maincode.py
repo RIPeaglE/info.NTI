@@ -76,7 +76,6 @@ def time():
         except TypeError:
             print("No class found with such name")
     return things
-
          
 Lektiontider = time()
 
@@ -104,12 +103,9 @@ def weather():
         f'https://www.google.com/search?q={Huddinge}&oq={Huddinge}&aqs=chrome.0.35i39l2j0l4j46j69i60.6128j1j7&sourceid=chrome&ie=UTF-8', headers=headers)
     soup = BeautifulSoup(res.text, 'html.parser')
     location = soup.select('#wob_loc')[0].getText().strip()
-    time = soup.select('#wob_dts')[0].getText().strip()
     info = soup.select('#wob_dc')[0].getText().strip()
     weather = soup.select('#wob_tm')[0].getText().strip()
     print(location + " " + weather+"°C")
-    #print(time)
-    #print(weather+"°C")
     print(info)
     return location + " " + weather+"°C" + ": " + info
 
@@ -117,12 +113,17 @@ city = 'Huddinge'
 city = city+" weather"
 weather = weather()
 
+#Week
+week_number_new = dt.isocalendar().week
+print ("Vecka: " + str(week_number_new))
+week = week_number_new
+
 #Flask
 app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, weather=weather)
+        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, weather=weather, week=week)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
