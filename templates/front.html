@@ -8,8 +8,8 @@
   
 <body>
     
-    <div id="dagar"></div>
-        
+    <div id="dagar"> </div>
+        <h2> {{ weather }}</h2>
     
     
     <img src="../static/img/NTIsymbolvit.png" style="display: block; margin-left: auto; margin-right: auto;"/>
@@ -41,19 +41,6 @@
         ];
         let dagar = document.getElementById("dagar");
         dagar.innerHTML = weekday[myDay];
-        //document.write(weekday[myDay]);
-        //document.write("<br/>");
-        
-        // get hour value.
-        //var hours = myDate.getHours();
-        //var ampm = hours >= 12 ? 'PM' : 'AM';
-        //hours = hours % 12;
-        //hours = hours ? hours : 12;
-        //var minutes = myDate.getMinutes();
-        //minutes = minutes <script 10 ? '0' + minutes : minutes;
-        //var myTime = hours + " " + ampm + " : " + minutes + 
-            //" : " + myDate.getMilliseconds();
-        //document.write("\tCurrent time is : " + myTime);
     </script>
 </body>
 </html>
