@@ -5,15 +5,24 @@
     <link rel="stylesheet" type="text/css" href="../static/base.css">
 </head>
 
+  
 <body>
+    
+    <div id="dagar"></div>
+        
+    
+    
     <img src="../static/img/NTIsymbolvit.png" style="display: block; margin-left: auto; margin-right: auto;"/>
     <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
 
-    
+    <h1>Skolmaten</h1>
+    <!--<div id="box1"> -->
+        <p>{{ skolmaten }} </h>
+    <!-- </div> -->
 
-    <h1>Lektioner&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dagens Lunch</h1>
+    <h1>Lektioner&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </h1>
     {% for x in Lektiontider %}
-        <div class="lektion">
+        <div class="lektion RoundedCornerMain">
             <h2>{{x[-1]}}</h2>
             <p>{{x[0]}}</p>
             <!--{% for klasses in x %}
@@ -22,9 +31,30 @@
         </div>
     {% endfor %}
 
-    <div id="box1">
-        <p>{{ skolmaten }} </p>
-    </div>
+    <script id="dagar", type="text/javascript">
+        var myDate = new Date();
+        var myDay = myDate.getDay();
+        
+        // Array of days.
+        var weekday = ['Söndag', 'Måndag', 'Tisdag',
+            'Onsdag', 'Torsdag', 'Fredag', 'Lördag'
+        ];
+        let dagar = document.getElementById("dagar");
+        dagar.innerHTML = weekday[myDay];
+        //document.write(weekday[myDay]);
+        //document.write("<br/>");
+        
+        // get hour value.
+        //var hours = myDate.getHours();
+        //var ampm = hours >= 12 ? 'PM' : 'AM';
+        //hours = hours % 12;
+        //hours = hours ? hours : 12;
+        //var minutes = myDate.getMinutes();
+        //minutes = minutes <script 10 ? '0' + minutes : minutes;
+        //var myTime = hours + " " + ampm + " : " + minutes + 
+            //" : " + myDate.getMilliseconds();
+        //document.write("\tCurrent time is : " + myTime);
+    </script>
 </body>
 </html>
 

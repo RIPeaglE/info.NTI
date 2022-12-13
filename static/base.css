@@ -24,7 +24,7 @@ h2 {
     text-align: middle;
 }
 
-div {
+.RoundedCornerMain {
     border: 2px solid rgb(115, 43, 184);
     border-radius: 12px;
     padding: 5px;
@@ -45,4 +45,9 @@ body {
 h6 {
     color:white;
     text-align: right; top: auto;
+}
+
+#dagar {
+    color: white;
+    font-size: 25px;
 }

@@ -81,12 +81,12 @@ Lektiontider = time()
 #Skolmaten
 #https://skolmaten.se/nti-gymnasiet-sodertorn/
 #https://skolmaten.se/about/rss/nti-gymnasiet-sodertorn/
-NewsFeed = feedparser.parse("https://skolmaten.se/nti-gymnasiet-sodertorn/rss/weeks/")
+NewsFeed = feedparser.parse("https://skolmaten.se/nti-gymnasiet-sodertorn/rss/days/")
 
 print('Number of RSS posts :', len(NewsFeed.entries))
 
 entry = NewsFeed.entries[0]
-print('Post Title :',entry.title)
+#print('Post Title :',entry.title)
 print('Post Summary :',entry.summary)
 
 skolmaten = entry.summary
