@@ -4,6 +4,7 @@ import datetime
 from flask import Flask
 from flask import render_template
 import feedparser
+from flask import Markup
 
 
 from datetime import datetime
@@ -89,7 +90,7 @@ entry = NewsFeed.entries[0]
 #print('Post Title :',entry.title)
 print('Post Summary :',entry.summary)
 
-skolmaten = entry.summary
+skolmaten = Markup(entry.summary)
 
 app = Flask(__name__)
  
