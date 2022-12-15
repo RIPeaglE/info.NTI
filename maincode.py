@@ -5,7 +5,8 @@ from flask import Flask
 from flask import render_template
 import feedparser
 from flask import Markup
-#from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
+import locale
 
 
 
@@ -101,25 +102,25 @@ skolmaten = Markup(entry.summary)
 #############
 
 #Weathers
-#headers = {
-#    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
  
  
-#def weather():
-    #Huddinge = city.replace(" ", "+")
-    #res = requests.get(
-    #    f'https://www.google.com/search?q={Huddinge}&oq={Huddinge}&aqs=chrome.0.35i39l2j0l4j46j69i60.6128j1j7&sourceid=chrome&ie=UTF-8', headers=headers)
-    #soup = BeautifulSoup(res.text, 'html.parser')
-    #location = soup.select('#wob_loc')[0].getText().strip()
-    #info = soup.select('#wob_dc')[0].getText().strip()
-    #weather = soup.select('#wob_tm')[0].getText().strip()
-    #print(location + " " + weather+"°C")
-    #print(info)
-    #return location + " " + weather+"°C" + ": " + info
+def weather():
+    Huddinge = city.replace(" ", "+")
+    res = requests.get(
+        f'https://www.google.com/search?q={Huddinge}&oq={Huddinge}&aqs=chrome.0.35i39l2j0l4j46j69i60.6128j1j7&sourceid=chrome&ie=UTF-8', headers=headers)
+    soup = BeautifulSoup(res.text, 'html.parser')
+    location = soup.select('#wob_loc')[0].getText().strip()
+    info = soup.select('#wob_dc')[0].getText().strip()
+    weather = soup.select('#wob_tm')[0].getText().strip()
+    print(location + " " + weather+"°C")
+    print(info)
+    return location + " " + weather+"°C" + ": " + info
 
-#city = 'Huddinge'
-#city = city+" weather"
-#weather = weather()
+city = 'Huddinge'
+city = city+" weather"
+weather = weather()
 #############
 
 #Week
@@ -130,8 +131,10 @@ week = week_number_new
 
 #Gets current date in format: Monday, 1 January. But its not working because i already use datetime. Have to find a way to fix it.
 #ddm = datetime.datetime.now()
+locale.setlocale(locale.LC_TIME, "sv_SE") # swedish
 print(dt.strftime("%A, %d %B"))
 date = dt.strftime("%A, %d %B")
+
 #############
 
 #SL
@@ -160,8 +163,6 @@ params = {
 
 response = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, headers=headers,verify=False)
 print(response.text)
-
-
 #############
 
 
@@ -170,7 +171,7 @@ app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, week=week, datum=date, SLbuss=response.text)
+        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, week=week, datum=date, SLbuss=response.text, weather=weather)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
