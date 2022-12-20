@@ -117,7 +117,7 @@ def weather():
 
     # store the value corresponding
     # to the "temp" key of y
-    current_temperature = y["temp"]
+    current_temperature = int(y["temp"])
 
     # store the value of "weather"
     # key in variable z
@@ -173,7 +173,7 @@ params = {
 }
 
 response = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, headers=headers,verify=False)
-#print(response.text)
+print(response.text)
 
 
 
