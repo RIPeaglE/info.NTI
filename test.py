@@ -31,8 +31,8 @@ resp = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, h
 for t in resp.json():
     params = {
         'mot': t['destination'],
-        'linje': t['line'],
-        'om': t['displayTime'],
-        'spår': t['track'],
+        'linje': t['transport']['line'],
+        'om': t['time']['displayTime'],
+        'stop': t['track']
     }
     print(params)

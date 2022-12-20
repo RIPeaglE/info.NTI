@@ -172,8 +172,20 @@ params = {
     'origName': 'Huddinge sjukhus (Huddinge)',
 }
 
-response = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, headers=headers,verify=False)
-print(response.text)
+resp = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, headers=headers,verify=False)
+#print(response.text)
+
+
+for t in resp.json():
+    params = {
+        'mot': t['destination'],
+        'linje': t['transport']['line'],
+        'om': t['time']['displayTime'],
+        'stop': t['track']
+    }
+    print(params)
+
+SLbuss = params
 
 
 
@@ -192,7 +204,7 @@ app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, week=week, datum=date, SLbuss=response.text, weather=output)
+        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, week=week, datum=date, SLbuss=SLbuss, weather=output)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
