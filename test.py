@@ -1,31 +1,60 @@
-from bs4 import BeautifulSoup
-import requests
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
- 
- 
-def weather(city):
-    Huddinge = city.replace(" ", "+")
-    res = requests.get(
-        f'https://www.google.com/search?q={Huddinge}&oq={Huddinge}&aqs=chrome.0.35i39l2j0l4j46j69i60.6128j1j7&sourceid=chrome&ie=UTF-8', headers=headers)
-    soup = BeautifulSoup(res.text, 'html.parser')
-    location = soup.select('#wob_loc')[0].getText().strip()
-    time = soup.select('#wob_dts')[0].getText().strip()
-    info = soup.select('#wob_dc')[0].getText().strip()
-    weather = soup.select('#wob_tm')[0].getText().strip()
-    print(location + " " + weather+"°C")
-    #print(time)
-    #print(weather+"°C")
-    print(info)
-    
- 
- 
-city = 'Huddinge'
-city = city+" weather"
-weather(city)
+import requests, json
 
 
-#ddm = datetime.datetime.now()
-#print(ddm.strftime("%A, %d %B"))
+def weather():
+    api_key = "bbef72fb8d03c05330921e348bb1ca8f"
 
-#date = ddm.strftime("%A, %d %B")
+    # base_url variable to store url
+    base_url = "http://api.openweathermap.org/data/2.5/weather?"
+
+    # Give city name
+    city_name = 'Huddinge'
+
+    # complete_url variable to store
+    # complete url address
+    complete_url = base_url + "appid=" + api_key + "&q=" + city_name + "&units=metric" + "&lang=sv"
+
+    # get method of requests module
+    # return response object
+    response = requests.get(complete_url)
+
+    # json method of response object
+    # convert json format data into
+    # python format data
+    x = response.json()
+
+    # Now x contains list of nested dictionaries
+    # Check the value of "cod" key is equal to
+    # "404", means city is found otherwise,
+    # city is not found
+    if x["cod"] != "404":
+
+        # store the value of "main"
+        # key in variable y
+        y = x["main"]
+
+        # store the value corresponding
+        # to the "temp" key of y
+        current_temperature = y["temp"]
+
+        # store the value of "weather"
+        # key in variable z
+        z = x["weather"]
+
+        # store the value corresponding
+        # to the "description" key at
+        # the 0th index of z
+        weather_description = z[0]["description"]
+
+        # print following values
+        print(" Temperature = " +
+                        str(current_temperature) + "C*" + 
+            "\n description = " +
+                        str(weather_description))
+
+        print( str(city_name) + " " + str(current_temperature) + "°C " + str(weather_description))
+
+    else:
+        print(" City Not Found ")
+
+weather()
