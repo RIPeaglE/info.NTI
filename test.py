@@ -33,6 +33,6 @@ for t in resp.json():
         'mot': t['destination'],
         'linje': t['line'],
         'om': t['displayTime'],
-        'spår': t['track']
+        'spår': t['track'],
     }
     print(params)
