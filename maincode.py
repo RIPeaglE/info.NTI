@@ -178,14 +178,17 @@ resp = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, h
 
 for t in resp.json():
     params = {
-        'mot': t['destination'],
         'linje': t['transport']['line'],
+        'mot': t['destination'],
         'om': t['time']['displayTime'],
-        'stop': t['track']
+        #'stop': t['track']
     }
     print(params)
 
 SLbuss = params
+
+
+
 
 
 
