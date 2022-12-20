@@ -105,27 +105,14 @@ def weather():
     api_key = "bbef72fb8d03c05330921e348bb1ca8f"
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
-    #city name
     city_name = 'Huddinge'
     complete_url = base_url + "appid=" + api_key + "&q=" + city_name + "&units=metric" + "&lang=sv"
     response = requests.get(complete_url)
     x = response.json()
 
-    # store the value of "main"
-    # key in variable y
     y = x["main"]
-
-    # store the value corresponding
-    # to the "temp" key of y
     current_temperature = int(y["temp"])
-
-    # store the value of "weather"
-    # key in variable z
     z = x["weather"]
-
-    # store the value corresponding
-    # to the "description" key at
-    # the 0th index of z
     weather_description = z[0]["description"]
 
     # print following values
