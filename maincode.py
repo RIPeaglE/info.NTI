@@ -129,9 +129,9 @@ def weather():
     weather_description = z[0]["description"]
 
     # print following values
-    print( str(city_name) + " " + str(current_temperature) + "°C " + str(weather_description))
+    return str(city_name) + " " + str(current_temperature) + "°C " + str(weather_description)
 
-weather()
+output = weather()
 #######################################################################################################################################
 
 #Week
@@ -192,7 +192,7 @@ app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, week=week, datum=date, SLbuss=response.text, weather=weather)
+        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, week=week, datum=date, SLbuss=response.text, weather=output)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
