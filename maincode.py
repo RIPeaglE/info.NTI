@@ -173,7 +173,7 @@ params = {
 }
 
 response = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, headers=headers,verify=False)
-print(response.text)
+#print(response.text)
 
 
 
