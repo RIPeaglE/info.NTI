@@ -165,14 +165,22 @@ resp = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, h
 
 for t in resp.json():
     params = {
-        'linje': t['transport']['line'],
         'mot': t['destination'],
+        'linje': t['transport']['line'],
         'om': t['time']['displayTime'],
-        #'stop': t['track']
+        'stop': t['track']
     }
-    print(params)
+    #print(params)
 
-SLbuss = params
+
+try: 
+    for s in resp.json():
+        p = ( s['transport']['line'] + " mot " + s['destination'] + " om: " + s['time']['displayTime'] + " från stop: " + s['track'])
+        print(p)
+        
+except:
+    print("error")
+SLbuss = p
 
 
 
@@ -194,7 +202,7 @@ app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html', Lektiontider=Lektiontider, skolmaten=skolmaten, week=week, datum=date, SLbuss=SLbuss, weather=output)
+        return render_template('front.html', week=week, datum=date, SLbuss=SLbuss, weather=output, Lektiontider=Lektiontider, skolmaten=skolmaten, )
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
