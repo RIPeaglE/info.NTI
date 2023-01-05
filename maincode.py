@@ -90,13 +90,13 @@ Lektiontider = time()
 #https://skolmaten.se/about/rss/nti-gymnasiet-sodertorn/
 NewsFeed = feedparser.parse("https://skolmaten.se/nti-gymnasiet-sodertorn/rss/days/")
 
-print('Number of RSS posts :', len(NewsFeed.entries))
+#print('Number of RSS posts :', len(NewsFeed.entries))
 
-entry = NewsFeed.entries[0]
+#entry = NewsFeed.entries[0]
 #print('Post Title :',entry.title)
-print('Post Summary :',entry.summary)
+#print('Post Summary :',entry.summary)
 
-skolmaten = Markup(entry.summary)
+#skolmaten = Markup(entry.summary)
 #######################################################################################################################################
 
 #Weathers
@@ -175,8 +175,10 @@ for t in resp.json():
 
 try: 
     for s in resp.json():
-        p = ( s['transport']['line'] + " mot " + s['destination'] + " om: " + s['time']['displayTime'] + " från stop: " + s['track'])
+        p = (s['transport']['line'] + " mot " + s['destination'] + " om: " + s['time']['displayTime'] + " från stop: " + s['track'])
         print(p)
+
+        
         
 except:
     print("error")
@@ -202,7 +204,8 @@ app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html', week=week, datum=date, SLbuss=SLbuss, weather=output, Lektiontider=Lektiontider, skolmaten=skolmaten, )
+        return render_template('front.html', week=week, datum=date, SLbuss=SLbuss, weather=output, Lektiontider=Lektiontider, )
+        # skolmaten=skolmaten,
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
