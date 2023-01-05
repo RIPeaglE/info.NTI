@@ -102,7 +102,7 @@ NewsFeed = feedparser.parse("https://skolmaten.se/nti-gymnasiet-sodertorn/rss/da
 #Weathers
 #https://www.geeksforgeeks.org/python-find-current-weather-of-any-city-using-openweathermap-api/
 def weather():
-    api_key = "bbef72fb8d03c05330921e348bb1ca8f"
+    api_key = "YOUR API KEY"
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
     city_name = 'Huddinge'
