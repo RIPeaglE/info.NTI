@@ -52,6 +52,7 @@ def time():
         a = []
         timplus = str(dt.now().strftime("%H")) + str(dt.now().strftime("%M"))
         dennatimme = int(timplus)
+        #print(dennatimme)
         try:
             for x in data['data']['data']['lessonInfo']: 
                 temp = f"{x['timeStart']} -- {x['texts'][0]}: Börjar kl {x['timeStart']} och slutar kl {x['timeEnd']}"
@@ -62,6 +63,7 @@ def time():
                 #Gets the lesson times for the current hour
                 startplus = str(x['timeStart'].split(':')[0]) + str(x['timeStart'].split(':')[1])
                 endplus = str(x['timeEnd'].split(':')[0]) + str(x['timeEnd'].split(':')[1])
+                #print(startplus, endplus)
                 start = int(startplus)
                 end = int(endplus)
                 if dennatimme >= start and dennatimme <= end:
@@ -162,7 +164,7 @@ params = {
 resp = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, headers=headers,verify=False)
 #print(response.text)
 
-
+SLbuss = []
 for t in resp.json():
     params = {
         'mot': t['destination'],
@@ -175,15 +177,16 @@ for t in resp.json():
 
 try: 
     for s in resp.json():
-        p = (s['transport']['line'] + " mot " + s['destination'] + " om: " + s['time']['displayTime'] + " från stop: " + s['track'])
+        p = f"{s['transport']['line']} mot {s['destination']} om: {s['time']['displayTime']} från STOP: {s['track']}"
         print(p)
+        
+        SLbuss.append(p)
+
 
         
         
 except:
     print("error")
-SLbuss = p
-
 
 
 

@@ -52,11 +52,19 @@
     </script>-->
 
     <h1> {{ SLbuss }} </h1>
-    {% for t in SLbuss %}
-        <h4>{{t[-1]}}</h4>
-        <h4>{{t[0]}}</h4>
-    {% endfor %}
-    <!-- -->
+    <div class="lektion RoundedCornerMain"> 
+        {% for t in SLbuss %}
+            <h2>{{t[-1]}}</h2>
+            <p>{{t[0]}}</p>
+        {% endfor %}
+        </div>
+    <!--   -->
+    
+    <script>
+        setTimeout(() => {
+            document.location.reload();
+        }, 60000);
+    </script>
 </body>
 </html>
 
