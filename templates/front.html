@@ -52,12 +52,13 @@
     </script>-->
 
     <h1> {{ SLbuss }} </h1>
-    <div class="lektion RoundedCornerMain"> 
-        {% for t in SLbuss %}
+    {% for t in SLbuss %}
+        <div class="lektion RoundedCornerMain"> 
             <h2>{{t[-1]}}</h2>
             <p>{{t[0]}}</p>
-        {% endfor %}
         </div>
+    {% endfor %}
+        
     <!--   -->
     
     <script>
