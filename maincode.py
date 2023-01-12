@@ -138,7 +138,7 @@ date = dt.strftime("%A, %d %B")
 
 #######################################################################################################################################
 
-#SL
+#SLbuss [Avgång från Huddinge Sjukhus]
 headers = {
     'authority': 'webcloud.sl.se',
     'accept': '*/*',
@@ -187,7 +187,7 @@ except:
 pass
 
 #######################################################################################################################################
-#SLpendel
+#SLpendel [Avgång från Flemingsberg Station]
 
 headers = {
     'authority': 'webcloud.sl.se',
