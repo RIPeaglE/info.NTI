@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 headers = {
     'authority': 'webcloud.sl.se',
     'accept': '*/*',
@@ -25,14 +26,4 @@ params = {
 }
 
 resp = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, headers=headers,verify=False)
-#print(response.text)
-
-
-for t in resp.json():
-    params = {
-        'mot': t['destination'],
-        'linje': t['transport']['line'],
-        'om': t['time']['displayTime'],
-        'stop': t['track']
-    }
-    print(params)
+print(resp.text)

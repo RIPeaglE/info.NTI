@@ -11,6 +11,8 @@ import locale
 
 from datetime import datetime
 
+
+
 #klasser = ['20el1','20el2','20teks','20teks','20teke','20de','21el','21tek','21de','22tek','22el','22de','22yrkel']
 klasser = []
 # get current datetime
@@ -46,7 +48,7 @@ def time():
         }
 
         # Gets the data from the Gettime's database 'https://gettime.ga/API/JSON'
-        response = requests.get('https://gettime.ga/API/JSON', params=params)
+        response = requests.get('https://beta.gettime.ga/API/JSON', params=params)
         data = json.loads(response.text)
         
         a = []
@@ -84,14 +86,14 @@ def time():
         except TypeError:
             print("No class found with such name")
     return things
-         
+
 Lektiontider = time()
+
 #######################################################################################################################################
 #Skolmaten
 #https://skolmaten.se/nti-gymnasiet-sodertorn/
 #https://skolmaten.se/about/rss/nti-gymnasiet-sodertorn/
 NewsFeed = feedparser.parse("https://skolmaten.se/nti-gymnasiet-sodertorn/rss/days/")
-
 print('Number of RSS posts :', len(NewsFeed.entries))
 
 entry = NewsFeed.entries[0]
@@ -100,7 +102,6 @@ print('Post Summary :',entry.summary)
 
 skolmaten = Markup(entry.summary)
 #######################################################################################################################################
-
 #Weathers
 #https://www.geeksforgeeks.org/python-find-current-weather-of-any-city-using-openweathermap-api/
 def weather():
@@ -181,19 +182,55 @@ try:
         print(p)
         
         SLbuss.append(p)
-
-
-        
-        
 except:
     print("error")
+pass
 
+#######################################################################################################################################
+#SLpendel
 
+headers = {
+    'authority': 'webcloud.sl.se',
+    'accept': '*/*',
+    'accept-language': 'sv,en-US;q=0.9,en;q=0.8',
+    'origin': 'https://sl.se',
+    'referer': 'https://sl.se/',
+    'sec-ch-ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36',
+}
 
+params = {
+    'mode': 'departures',
+    'origPlaceId': 'QT0xQE89RmxlbWluZ3NiZXJncyBzdGF0aW9uIChIdWRkaW5nZSlAWD0xNzk0Nzk4OEBZPTU5MjE5MjM2QFU9NzRATD0zMDAxMDcwMDZAQj0xQHA9MTY3MzQ5MjQyMEA=',
+    'origSiteId': '7006',
+    'desiredResults': '3',
+    'origName': 'Flemingsbergs station (Huddinge)',
+}
 
+response = requests.get('https://webcloud.sl.se/api/v2/departures', params=params, headers=headers, verify=False)
+#print(response.text)
 
+SLpendel = []
+for o in response.json():
+    params = {
+        'linje': o['transport']['line'],
+        'mot': o['destination'],
+        'om': o['time']['displayTime'],
+        'transportType': o['transport']['transportType'],
+        'spår': o['track']
+    }
+    for key, value in params.items():
+        if key == "transportType" and value == "Train":
+            z = f"Linje {params['linje']} mot {params['mot']} om: {params['om']} från spår: {params['spår']}"
+            print(z)
+            SLpendel.append(z)
 
-
+SLpendel = SLpendel
 
 
 
@@ -207,7 +244,7 @@ app = Flask(__name__)
  
 @app.route('/')
 def home():
-        return render_template('front.html', week=week, datum=date, SLbuss=SLbuss, weather=output, Lektiontider=Lektiontider, skolmaten=skolmaten, )
+        return render_template('front.html', week=week, datum=date, SLbuss=SLbuss, weather=output, Lektiontider=Lektiontider, skolmaten=skolmaten, SLpendel=SLpendel)
         
 
 if __name__ == '__main__':
